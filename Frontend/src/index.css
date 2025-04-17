@@ -1,0 +1,98 @@
+/* App.css */
+:root {
+  --primary: #2A9D8F;
+  --primary-light: #3EB6A7;
+  --primary-dark: #1F756B;
+  --secondary: #E76F51;
+  --secondary-light: #F08E76;
+  --secondary-dark: #D15941;
+  --neutral-dark: #264653;
+  --neutral-medium: #6C757D;
+  --neutral-light: #F8F9FA;
+  --accent: #E9C46A;
+  --accent-light: #F0D589;
+  --accent-dark: #D9B44A;
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --danger: #DC3545;
+  --info: #17A2B8;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+  line-height: 1.6;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 8px 18px;
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+}
