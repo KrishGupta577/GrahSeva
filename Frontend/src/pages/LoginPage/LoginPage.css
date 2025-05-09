@@ -1,0 +1,222 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--neutral-light);
+  }
+  
+  .login-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .login-image {
+    flex: 1;
+    background: linear-gradient(rgba(42, 157, 143, 0.85), rgba(38, 70, 83, 0.9)), url('/images/home-service.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 40px;
+  }
+  
+  .login-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .login-header h1 {
+    color: var(--neutral-dark);
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .login-header p {
+    color: var(--neutral-medium);
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: var(--neutral-dark);
+  }
+  
+  .form-group input {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(42, 157, 143, 0.2);
+  }
+  
+  .form-extras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .forgot-password:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 14px !important;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  .login-footer {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .signup-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .signup-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  .social-login {
+    margin-top: 20px;
+  }
+  
+  .social-login p {
+    color: var(--neutral-medium);
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .social-login p::before,
+  .social-login p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background-color: #ddd;
+  }
+  
+  .social-login p::before {
+    left: 0;
+  }
+  
+  .social-login p::after {
+    right: 0;
+  }
+  
+  .social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .social-btn {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: var(--neutral-dark);
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .social-btn:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .google-btn:hover {
+    color: #DB4437;
+  }
+  
+  .facebook-btn:hover {
+    color: #4267B2;
+  }
+  
+  .service-highlights {
+    text-align: center;
+    max-width: 400px;
+  }
+  
+  .service-highlights h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .service-highlights ul {
+    list-style: none;
+    text-align: left;
+    font-size: 18px;
+  }
+  
+  .service-highlights li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .service-highlights li:before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 992px) {
+    .login-image {
+      display: none;
+    }
+    
+    .login-card {
+      max-width: 100%;
+    }
+  }

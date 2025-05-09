@@ -1,0 +1,130 @@
+/* ActiveServices.css */
+.active-services {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .service-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    transition: var(--transition);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+  }
+  
+  .service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .service-provider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .service-provider img {
+    border-radius: 50%;
+    border: 2px solid var(--primary-light);
+  }
+  
+  .service-provider h4 {
+    color: var(--neutral-dark);
+    margin-bottom: 5px;
+  }
+  
+  .service-provider p {
+    color: var(--neutral-medium);
+    font-size: 14px;
+  }
+  
+  .provider-rating {
+    color: var(--accent-dark);
+    font-weight: 500;
+  }
+  
+  .service-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .status-progress {
+    background-color: rgba(23, 162, 184, 0.2);
+    color: var(--info);
+  }
+  
+  .status-scheduled {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: var(--warning);
+  }
+  
+  .status-confirmed {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--success);
+  }
+  
+  .service-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--neutral-medium);
+    font-size: 14px;
+  }
+  
+  .detail-icon {
+    font-size: 16px;
+  }
+  
+  .service-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  
+  .no-services {
+    text-align: center;
+    padding: 30px;
+    color: var(--neutral-medium);
+  }
+  
+  .no-services p {
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .service-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .service-details {
+      grid-template-columns: 1fr;
+    }
+    
+    .service-actions {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .service-actions button {
+      width: 100%;
+    }
+  }
