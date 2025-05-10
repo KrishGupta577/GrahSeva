@@ -1,48 +1,51 @@
-// ActiveServices.jsx
-import React from 'react';
+import { useContext } from 'react';
 import './ActiveServices.css';
+import { MyContext } from '../../Context/ContextStore';
 
 const ActiveServices = ({ limit }) => {
-  const services = [
-    {
-      id: 1,
-      serviceName: "Plumbing Repairs",
-      providerName: "Rajesh Kumar",
-      status: "In Progress", 
-      date: "April 18, 2025",
-      time: "10:00 AM - 1:00 PM",
-      address: "123 Park Street, Sector 18, Noida",
-      price: "₹800",
-      providerImage: "/api/placeholder/50/50",
-      providerRating: 4.8,
-    },
-    {
-      id: 2,
-      serviceName: "House Cleaning",
-      providerName: "Maya Sharma",
-      status: "Scheduled", 
-      date: "April 20, 2025",
-      time: "9:00 AM - 12:00 PM",
-      address: "45 Green Avenue, Malviya Nagar, Delhi",
-      price: "₹1,200",
-      providerImage: "/api/placeholder/50/50",
-      providerRating: 4.6,
-    },
-    {
-      id: 3,
-      serviceName: "Electrical Repairs",
-      providerName: "Sanjay Verma",
-      status: "Confirmed", 
-      date: "April 22, 2025",
-      time: "2:00 PM - 4:00 PM",
-      address: "123 Park Street, Sector 18, Noida",
-      price: "₹950",
-      providerImage: "/api/placeholder/50/50",
-      providerRating: 4.7,
-    }
-  ];
 
-  const displayServices = limit ? services.slice(0, limit) : services;
+  const {activeServices} = useContext(MyContext)
+
+  // const services = [
+  //   {
+  //     id: 1,
+  //     serviceName: "Plumbing Repairs",
+  //     providerName: "Rajesh Kumar",
+  //     status: "In Progress", 
+  //     date: "April 18, 2025",
+  //     time: "10:00 AM - 1:00 PM",
+  //     address: "123 Park Street, Sector 18, Noida",
+  //     price: "₹800",
+  //     providerImage: "/api/placeholder/50/50",
+  //     providerRating: 4.8,
+  //   },
+  //   {
+  //     id: 2,
+  //     serviceName: "House Cleaning",
+  //     providerName: "Maya Sharma",
+  //     status: "Scheduled", 
+  //     date: "April 20, 2025",
+  //     time: "9:00 AM - 12:00 PM",
+  //     address: "45 Green Avenue, Malviya Nagar, Delhi",
+  //     price: "₹1,200",
+  //     providerImage: "/api/placeholder/50/50",
+  //     providerRating: 4.6,
+  //   },
+  //   {
+  //     id: 3,
+  //     serviceName: "Electrical Repairs",
+  //     providerName: "Sanjay Verma",
+  //     status: "Confirmed", 
+  //     date: "April 22, 2025",
+  //     time: "2:00 PM - 4:00 PM",
+  //     address: "123 Park Street, Sector 18, Noida",
+  //     price: "₹950",
+  //     providerImage: "/api/placeholder/50/50",
+  //     providerRating: 4.7,
+  //   }
+  // ];
+
+  const displayServices = limit ? activeServices.slice(0, limit) : activeServices;
 
   const getStatusClass = (status) => {
     switch(status) {
@@ -69,7 +72,6 @@ const ActiveServices = ({ limit }) => {
           <div className="service-card" key={service.id}>
             <div className="service-header">
               <div className="service-provider">
-                <img src={service.providerImage} alt={service.providerName} />
                 <div>
                   <h4>{service.serviceName}</h4>
                   <p>by {service.providerName} <span className="provider-rating">★ {service.providerRating}</span></p>

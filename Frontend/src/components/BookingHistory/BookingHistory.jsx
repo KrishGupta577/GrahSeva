@@ -1,42 +1,48 @@
 // BookingHistory.jsx
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './BookingHistory.css';
+import { MyContext } from '../../Context/ContextStore';
 
 const BookingHistory = () => {
-  const [bookings, setBookings] = useState([
-    {
-      id: 1,
-      service: 'Plumbing',
-      provider: 'Raj Kumar',
-      date: '2025-04-10',
-      status: 'Completed',
-      rating: 4.5,
-    },
-    {
-      id: 2,
-      service: 'House Cleaning',
-      provider: 'Meera Singh',
-      date: '2025-04-05',
-      status: 'Completed',
-      rating: 5,
-    },
-    {
-      id: 3,
-      service: 'Electrician',
-      provider: 'Vikram Patel',
-      date: '2025-04-15',
-      status: 'Scheduled',
-      rating: null,
-    },
-    {
-      id: 4,
-      service: 'Gardening',
-      provider: 'Anita Sharma',
-      date: '2025-03-28',
-      status: 'Completed',
-      rating: 4,
-    },
-  ]);
+
+  const { activeServices } = useContext(MyContext)
+
+  console.log(activeServices)
+
+  // const [bookings, setBookings] = useState([
+  //   {
+  //     id: 1,
+  //     service: 'Plumbing',
+  //     provider: 'Raj Kumar',
+  //     date: '2025-04-10',
+  //     status: 'Completed',
+  //     rating: 4.5,
+  //   },
+  //   {
+  //     id: 2,
+  //     service: 'House Cleaning',
+  //     provider: 'Meera Singh',
+  //     date: '2025-04-05',
+  //     status: 'Completed',
+  //     rating: 5,
+  //   },
+  //   {
+  //     id: 3,
+  //     service: 'Electrician',
+  //     provider: 'Vikram Patel',
+  //     date: '2025-04-15',
+  //     status: 'Scheduled',
+  //     rating: null,
+  //   },
+  //   {
+  //     id: 4,
+  //     service: 'Gardening',
+  //     provider: 'Anita Sharma',
+  //     date: '2025-03-28',
+  //     status: 'Completed',
+  //     rating: 4,
+  //   },
+  // ]);
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -66,18 +72,18 @@ const BookingHistory = () => {
       </div>
 
       <div className="bookings-container">
-        {bookings.map(booking => (
+        {activeServices.map(booking => (
           <div className="booking-card" key={booking.id}>
             <div className="booking-header">
-              <h3>{booking.service}</h3>
+              <h3>{booking.serviceTitle}</h3>
               <span className={`booking-status ${getStatusClass(booking.status)}`}>
                 {booking.status}
               </span>
             </div>
             <div className="booking-details">
-              <p><strong>Service Provider:</strong> {booking.provider}</p>
-              <p><strong>Date:</strong> {new Date(booking.date).toLocaleDateString('en-IN', { 
-                year: 'numeric', month: 'long', day: 'numeric' 
+              <p><strong>Service Provider:</strong> {booking.providerName}</p>
+              <p><strong>Date:</strong> {new Date(booking.date).toLocaleDateString('en-IN', {
+                year: 'numeric', month: 'long', day: 'numeric'
               })}</p>
               {booking.rating && (
                 <div className="booking-rating">

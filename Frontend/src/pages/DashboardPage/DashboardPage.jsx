@@ -1,7 +1,7 @@
 // Dashboard.jsx
 import React, { useContext, useState } from 'react';
 import './DashboardPage.css';
-import ActiveServices from '../../components/ActiveSidebar/ActiveServices';
+import ActiveServices from '../../components/ActiveServices/ActiveServices';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import MyProfile from '../../components/MyProfile/MyProfile';
 import FindServices from '../../components/FindServices/FindServices';
@@ -13,10 +13,8 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home');
   const { userInfo } = useContext(MyContext)
 
-  console.log(userInfo)
-
   if (!userInfo) {
-    return <div>Loading your dashboard...</div>; // or a spinner
+    return <div>Loading your dashboard...</div>;
   }
 
   return (
@@ -100,13 +98,6 @@ const Dashboard = () => {
                     <button className="btn-text" onClick={() => setActiveTab('history')}>View All</button>
                   </div>
                   <BookingHistory limit={3} />
-                </div>
-                <div className="section-container">
-                  <div className="section-header">
-                    <h3>Recent Bookings</h3>
-                    <button className="btn-text" onClick={() => setActiveTab('settings')}>View All</button>
-                  </div>
-                  <Settings limit={3} />
                 </div>
               </div>
             </div>

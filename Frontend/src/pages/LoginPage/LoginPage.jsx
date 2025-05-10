@@ -1,5 +1,4 @@
 // Login.jsx
-<<<<<<< HEAD
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -36,34 +35,9 @@ const Login = () => {
       toast.success("Welcome " + response.data.name)
       navigate('/dashboard');
     } catch (error) {
-      console.error("Login error:", error.response ? error.response.data : error.message);
+      console.error("Login error:", error);
       toast.error("Login failed. Please check your credentials.");
     }
-=======
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './LoginPage.css';
-
-const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add login logic here
-    console.log('Login submitted:', formData);
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
   };
 
   return (
@@ -74,7 +48,6 @@ const Login = () => {
           <p>Log in to access your GrahSeva account</p>
         </div>
         
-<<<<<<< HEAD
         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
@@ -90,20 +63,6 @@ const Login = () => {
               })}
             />
             {errors.email && <p className="error-message">{errors.email.message}</p>}
-=======
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="your@email.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
           </div>
           
           <div className="form-group">
@@ -111,21 +70,12 @@ const Login = () => {
             <input
               type="password"
               id="password"
-<<<<<<< HEAD
               placeholder="Enter your password"
               {...register("password", { 
                 required: "Password is required",
               })}
             />
             {errors.password && <p className="error-message">{errors.password.message}</p>}
-=======
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
           </div>
           
           <div className="form-extras">
@@ -133,13 +83,7 @@ const Login = () => {
               <input
                 type="checkbox"
                 id="rememberMe"
-<<<<<<< HEAD
                 {...register("rememberMe")}
-=======
-                name="rememberMe"
-                checked={formData.rememberMe}
-                onChange={handleChange}
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               />
               <label htmlFor="rememberMe">Remember me</label>
             </div>
@@ -166,10 +110,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
       <div className="login-image">
         <div className="service-highlights">
           <h2>Your Home Services Partner</h2>

@@ -1,169 +1,170 @@
-/* Sidebar.css */
 .sidebar {
-    width: 280px;
-    height: 100%;
-    background-color: white;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
+  width: 280px;
+  height: 100%;
+  background-color: var(--neutral-light);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 25px 20px;
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sidebar-nav {
+  padding: 20px 0;
+  flex: 1;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.sidebar-nav li {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav li button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--neutral-medium);
+  font-weight: 500;
+  transition: var(--transition);
+  border-radius: 0;
+}
+
+.sidebar-nav li button:hover {
+  background-color: rgba(42, 157, 143, 0.1); /* You can create a --primary-hover-bg if needed */
+  color: var(--primary);
+}
+
+.sidebar-nav li.active button {
+  background-color: rgba(42, 157, 143, 0.15);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+}
+
+.menu-icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid var(--neutral-light);
+}
+
+.support-card {
+  background-color: rgba(42, 157, 143, 0.1);
+  border-radius: var(--border-radius);
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.support-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.support-card h4 {
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.support-card p {
+  font-size: 12px;
+  color: var(--neutral-medium);
+  margin-bottom: 10px;
+}
+
+.support-btn {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px !important;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  color: var(--danger);
+  font-weight: 500;
+  border-radius: var(--border-radius);
+}
+
+.logout-btn:hover {
+  background-color: rgba(220, 53, 69, 0.1); /* Or define --danger-hover-bg if consistent styling is needed */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    overflow: hidden;
   }
-  
+
   .sidebar-header {
-    padding: 25px 20px;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .logo {
-    color: var(--primary);
-    font-size: 24px;
-    font-weight: 700;
-  }
-  
-  .sidebar-nav {
-    padding: 20px 0;
-    flex: 1;
-  }
-  
-  .sidebar-nav ul {
-    list-style: none;
-  }
-  
-  .sidebar-nav li {
-    margin-bottom: 5px;
-  }
-  
-  .sidebar-nav li button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 12px 20px;
-    background: none;
-    border: none;
-    text-align: left;
-    color: var(--neutral-medium);
-    font-weight: 500;
-    transition: var(--transition);
-    border-radius: 0;
-  }
-  
-  .sidebar-nav li button:hover {
-    background-color: rgba(42, 157, 143, 0.1);
-    color: var(--primary);
-  }
-  
-  .sidebar-nav li.active button {
-    background-color: rgba(42, 157, 143, 0.15);
-    color: var(--primary);
-    border-left: 4px solid var(--primary);
-  }
-  
-  .menu-icon {
-    margin-right: 12px;
-    font-size: 18px;
-  }
-  
-  .sidebar-footer {
-    padding: 20px;
-    border-top: 1px solid #eaeaea;
-  }
-  
-  .support-card {
-    background-color: rgba(42, 157, 143, 0.1);
-    border-radius: var(--border-radius);
-    padding: 15px;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 15px 5px;
   }
-  
-  .support-icon {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+  .logo {
+    font-size: 16px;
   }
-  
+
+  .menu-text,
+  .support-card p,
   .support-card h4 {
-    color: var(--primary);
-    margin-bottom: 5px;
+    display: none;
   }
-  
-  .support-card p {
-    font-size: 12px;
-    color: var(--neutral-medium);
-    margin-bottom: 10px;
+
+  .menu-icon {
+    margin-right: 0;
+    font-size: 20px;
   }
-  
+
+  .sidebar-nav li button {
+    justify-content: center;
+    padding: 15px 5px;
+  }
+
+  .sidebar-footer {
+    padding: 10px;
+  }
+
+  .support-card {
+    padding: 10px 5px;
+  }
+
+  .support-icon {
+    margin-bottom: 0;
+  }
+
   .support-btn {
-    width: 100%;
-    font-size: 14px;
-    padding: 8px !important;
+    font-size: 0;
+    padding: 10px !important;
   }
-  
+
+  .support-btn::before {
+    content: "?";
+    font-size: 16px;
+  }
+
   .logout-btn {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 12px;
-    background: none;
-    color: var(--danger);
-    font-weight: 500;
-    border-radius: var(--border-radius);
+    justify-content: center;
   }
-  
-  .logout-btn:hover {
-    background-color: rgba(220, 53, 69, 0.1);
-  }
-  
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 70px;
-      overflow: hidden;
-    }
-    
-    .sidebar-header {
-      text-align: center;
-      padding: 15px 5px;
-    }
-    
-    .logo {
-      font-size: 16px;
-    }
-    
-    .menu-text, .support-card p, .support-card h4 {
-      display: none;
-    }
-    
-    .menu-icon {
-      margin-right: 0;
-      font-size: 20px;
-    }
-    
-    .sidebar-nav li button {
-      justify-content: center;
-      padding: 15px 5px;
-    }
-    
-    .sidebar-footer {
-      padding: 10px;
-    }
-    
-    .support-card {
-      padding: 10px 5px;
-    }
-    
-    .support-icon {
-      margin-bottom: 0;
-    }
-    
-    .support-btn {
-      font-size: 0;
-      padding: 10px !important;
-    }
-    
-    .support-btn::before {
-      content: "?";
-      font-size: 16px;
-    }
-    
-    .logout-btn {
-      justify-content: center;
-    }
-  }
+}

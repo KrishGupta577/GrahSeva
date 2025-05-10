@@ -1,226 +1,225 @@
-// Settings.jsx
-import React, { useState } from 'react';
-import './Setting.css';
+import { useState, useContext, useEffect } from 'react';
+import { ChevronRight, Moon, Sun, Bell, Lock, User, Globe } from 'lucide-react';
+import { MyContext } from '../../Context/ContextStore';
+import './Setting.css'; // Make sure to create this CSS file
 
-const Settings = () => {
-  const [generalSettings, setGeneralSettings] = useState({
-    language: 'English',
-    darkMode: false,
-    notifications: true,
-    emailAlerts: true,
-    smsAlerts: true
-  });
+export default function Settings() {
+  const { colorTheme, setColorTheme } = useContext(MyContext);
+  const [isDark, setIsDark] = useState(colorTheme === 'dark');
   
-  const [securitySettings, setSecuritySettings] = useState({
-    twoFactorAuth: false,
-    sessionTimeout: '30 minutes',
-    loginAlerts: true
+  // Apply dark class to body when colorTheme changes
+  useEffect(() => {
+    if (colorTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+    setIsDark(colorTheme === 'dark');
+  }, [colorTheme]);
+  
+  const [settings, setSettings] = useState({
+    general: {
+      language: 'English',
+      notifications: true,
+      emailAlerts: true,
+      smsAlerts: true
+    },
+    security: {
+      twoFactorAuth: false,
+      sessionTimeout: '30 minutes',
+      loginAlerts: true
+    }
   });
 
-  const handleGeneralChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setGeneralSettings({
-      ...generalSettings,
-      [name]: type === 'checkbox' ? checked : value
-    });
+  const toggleDarkMode = () => {
+    const newTheme = isDark ? 'light' : 'dark';
+    setColorTheme(newTheme);
+    // Directly apply class to ensure immediate visual feedback
+    if (newTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
   };
 
-  const handleSecurityChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setSecuritySettings({
-      ...securitySettings,
-      [name]: type === 'checkbox' ? checked : value
-    });
+  const updateSetting = (category, name, value) => {
+    setSettings(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [name]: value
+      }
+    }));
   };
+
+  const SettingSection = ({ icon, title, expanded = false, children }) => {
+    const [isOpen, setIsOpen] = useState(expanded);
+    
+    return (
+      <div className={`setting-section ${isDark ? 'dark' : ''}`}>
+        <div className="section-header" onClick={() => setIsOpen(!isOpen)}>
+          <div className="section-title">
+            {icon}
+            <h3>{title}</h3>
+          </div>
+          <ChevronRight className={`chevron ${isOpen ? 'rotate' : ''}`} size={20} />
+        </div>
+        
+        {isOpen && <div className="section-content">{children}</div>}
+      </div>
+    );
+  };
+
+  const Toggle = ({ enabled, onChange, disabled = false }) => (
+    <button
+      onClick={() => !disabled && onChange(!enabled)}
+      className={`toggle ${enabled ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+      disabled={disabled}
+    >
+      <span className="toggle-slider"></span>
+    </button>
+  );
+
+  // Update body class on initial load
+  useEffect(() => {
+    if (isDark) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }, []);
 
   return (
-    <div className="settings-container">
-      <h2>Settings</h2>
-      
-      <div className="settings-section">
-        <h3>General Settings</h3>
-        <div className="settings-card">
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Language</span>
-              <p className="settings-description">Choose your preferred language</p>
-            </div>
-            <div className="settings-control">
-              <select 
-                name="language" 
-                value={generalSettings.language}
-                onChange={handleGeneralChange}
-              >
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Tamil">Tamil</option>
-                <option value="Telugu">Telugu</option>
-                <option value="Kannada">Kannada</option>
-              </select>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Dark Mode</span>
-              <p className="settings-description">Toggle dark mode for the application</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="darkMode" 
-                  checked={generalSettings.darkMode}
-                  onChange={handleGeneralChange} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Notifications</span>
-              <p className="settings-description">Enable or disable all notifications</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="notifications" 
-                  checked={generalSettings.notifications}
-                  onChange={handleGeneralChange} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Email Alerts</span>
-              <p className="settings-description">Receive notifications via email</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="emailAlerts" 
-                  checked={generalSettings.emailAlerts}
-                  onChange={handleGeneralChange}
-                  disabled={!generalSettings.notifications} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>SMS Alerts</span>
-              <p className="settings-description">Receive notifications via SMS</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="smsAlerts" 
-                  checked={generalSettings.smsAlerts}
-                  onChange={handleGeneralChange}
-                  disabled={!generalSettings.notifications} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-        </div>
+    <div className={`settings-container ${isDark ? 'dark' : ''}`}>
+      <div className="settings-header">
+        <h2>Settings</h2>
+        <button
+          onClick={toggleDarkMode}
+          className="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          {isDark ? <Sun size={20} color='white' /> : <Moon size={20} />}
+        </button>
       </div>
       
-      <div className="settings-section">
-        <h3>Security Settings</h3>
-        <div className="settings-card">
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Two-Factor Authentication</span>
-              <p className="settings-description">Add an extra layer of security</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="twoFactorAuth" 
-                  checked={securitySettings.twoFactorAuth}
-                  onChange={handleSecurityChange} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
+      <SettingSection icon={<Globe size={20} />} title="General" expanded={true}>
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Language</h4>
+            <p>Choose your preferred language</p>
           </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Session Timeout</span>
-              <p className="settings-description">Set automatic logout timeout</p>
-            </div>
-            <div className="settings-control">
-              <select 
-                name="sessionTimeout" 
-                value={securitySettings.sessionTimeout}
-                onChange={handleSecurityChange}
-              >
-                <option value="15 minutes">15 minutes</option>
-                <option value="30 minutes">30 minutes</option>
-                <option value="1 hour">1 hour</option>
-                <option value="2 hours">2 hours</option>
-                <option value="Never">Never</option>
-              </select>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-label">
-              <span>Login Alerts</span>
-              <p className="settings-description">Get notified of new login attempts</p>
-            </div>
-            <div className="settings-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  name="loginAlerts" 
-                  checked={securitySettings.loginAlerts}
-                  onChange={handleSecurityChange} 
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-          
-          <div className="settings-item">
-            <div className="settings-button">
-              <button className="btn-primary">Change Password</button>
-            </div>
-          </div>
+          <select 
+            value={settings.general.language}
+            onChange={(e) => updateSetting('general', 'language', e.target.value)}
+            className="setting-select"
+          >
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Tamil</option>
+            <option>Telugu</option>
+            <option>Kannada</option>
+          </select>
         </div>
-      </div>
+
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Notifications</h4>
+            <p>Enable or disable all notifications</p>
+          </div>
+          <Toggle 
+            enabled={settings.general.notifications} 
+            onChange={(value) => updateSetting('general', 'notifications', value)}
+          />
+        </div>
+
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Email Alerts</h4>
+            <p>Receive notifications via email</p>
+          </div>
+          <Toggle 
+            enabled={settings.general.emailAlerts} 
+            onChange={(value) => updateSetting('general', 'emailAlerts', value)}
+            disabled={!settings.general.notifications}
+          />
+        </div>
+
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>SMS Alerts</h4>
+            <p>Receive notifications via SMS</p>
+          </div>
+          <Toggle 
+            enabled={settings.general.smsAlerts} 
+            onChange={(value) => updateSetting('general', 'smsAlerts', value)}
+            disabled={!settings.general.notifications}
+          />
+        </div>
+      </SettingSection>
       
-      <div className="settings-section">
-        <h3>Account Settings</h3>
-        <div className="settings-card">
-          <div className="settings-item">
-            <div className="settings-button danger-zone">
-              <button className="btn-danger">Delete My Account</button>
-              <p className="settings-description warning-text">This action cannot be undone</p>
-            </div>
+      <SettingSection icon={<Lock size={20} />} title="Security">
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Two-Factor Authentication</h4>
+            <p>Add an extra layer of security</p>
           </div>
+          <Toggle 
+            enabled={settings.security.twoFactorAuth} 
+            onChange={(value) => updateSetting('security', 'twoFactorAuth', value)}
+          />
         </div>
-      </div>
+
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Session Timeout</h4>
+            <p>Set automatic logout timeout</p>
+          </div>
+          <select 
+            value={settings.security.sessionTimeout}
+            onChange={(e) => updateSetting('security', 'sessionTimeout', e.target.value)}
+            className="setting-select"
+          >
+            <option>15 minutes</option>
+            <option>30 minutes</option>
+            <option>1 hour</option>
+            <option>2 hours</option>
+            <option>Never</option>
+          </select>
+        </div>
+
+        <div className="setting-item">
+          <div className="setting-info">
+            <h4>Login Alerts</h4>
+            <p>Get notified of new login attempts</p>
+          </div>
+          <Toggle 
+            enabled={settings.security.loginAlerts} 
+            onChange={(value) => updateSetting('security', 'loginAlerts', value)}
+          />
+        </div>
+
+        <button className="btn password-btn">
+          Change Password
+        </button>
+      </SettingSection>
+      
+      <SettingSection icon={<User size={20} />} title="Account">
+        <div className="danger-zone">
+          <button className="btn danger-btn">
+            Delete My Account
+          </button>
+          <p className="warning-text">This action cannot be undone</p>
+        </div>
+      </SettingSection>
       
       <div className="settings-actions">
-        <button className="btn-secondary">Cancel</button>
-        <button className="btn-primary">Save Changes</button>
+        <button className="btn cancel-btn">
+          Cancel
+        </button>
+        <button className="btn save-btn">
+          Save Changes
+        </button>
       </div>
     </div>
   );
-};
-
-export default Settings;
+}

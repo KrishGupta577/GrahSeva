@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignupPage.css';
@@ -7,14 +6,6 @@ import axios from 'axios';
 const Signup = () => {
   const navigate = useNavigate(); // Hook for navigation
 
-=======
-// Signup.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './SignupPage.css';
-
-const Signup = () => {
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -43,7 +34,6 @@ const Signup = () => {
     setStep(step - 1);
   };
 
-<<<<<<< HEAD
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,12 +57,6 @@ const Signup = () => {
       console.error("Signup failed:", error);
       alert("Signup failed. Please try again.");
     }
-=======
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add signup logic here
-    console.log('Signup submitted:', formData);
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
   };
 
   return (
@@ -82,11 +66,6 @@ const Signup = () => {
           <h1>Create Your Account</h1>
           <p>Join GrahSeva and find reliable home services</p>
         </div>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
         <div className="signup-progress">
           <div className={`progress-step ${step >= 1 ? 'active' : ''}`}>
             <div className="step-number">1</div>
@@ -103,11 +82,6 @@ const Signup = () => {
             <span>Complete</span>
           </div>
         </div>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
         <form onSubmit={handleSubmit} className="signup-form">
           {step === 1 && (
             <div className="form-step">
@@ -123,11 +97,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-group">
                 <label htmlFor="lastName">Last Name</label>
                 <input
@@ -140,11 +109,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
                 <input
@@ -157,11 +121,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-buttons">
                 <button type="button" className="btn-primary" onClick={nextStep}>
                   Continue
@@ -169,11 +128,6 @@ const Signup = () => {
               </div>
             </div>
           )}
-<<<<<<< HEAD
-
-=======
-          
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
           {step === 2 && (
             <div className="form-step">
               <div className="form-group">
@@ -188,11 +142,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-group">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
@@ -205,11 +154,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-group">
                 <label htmlFor="phone">Phone Number</label>
                 <input
@@ -222,11 +166,6 @@ const Signup = () => {
                   required
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-buttons">
                 <button type="button" className="btn-outline" onClick={prevStep}>
                   Back
@@ -237,11 +176,6 @@ const Signup = () => {
               </div>
             </div>
           )}
-<<<<<<< HEAD
-
-=======
-          
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
           {step === 3 && (
             <div className="form-step">
               <div className="form-group terms-group">
@@ -259,11 +193,6 @@ const Signup = () => {
                   </label>
                 </div>
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="final-review">
                 <h3>Review Your Information</h3>
                 <div className="review-info">
@@ -272,11 +201,6 @@ const Signup = () => {
                   <p><strong>Phone:</strong> {formData.phone}</p>
                 </div>
               </div>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
               <div className="form-buttons">
                 <button type="button" className="btn-outline" onClick={prevStep}>
                   Back
@@ -288,20 +212,10 @@ const Signup = () => {
             </div>
           )}
         </form>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
         <div className="signup-footer">
           <p>Already have an account? <Link to="/login" className="login-link">Log in</Link></p>
         </div>
       </div>
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f
       <div className="signup-info">
         <div className="benefits">
           <h2>Why Choose GrahSeva</h2>
@@ -339,8 +253,4 @@ const Signup = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Signup;
-=======
-export default Signup;
->>>>>>> 2b007e2ab7115c5bae8ae14165ac37e6961d197f

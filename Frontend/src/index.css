@@ -18,7 +18,32 @@
   --info: #17A2B8;
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
+  background-color: white;
   --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --primary: #3EB6A7;
+  --primary-light: #58D6C1;
+  --primary-dark: #2A9D8F;
+  --secondary: #F08E76;
+  --secondary-light: #F5A994;
+  --secondary-dark: #E76F51;
+  --neutral-dark: #F8F9FA;
+  --neutral-medium: #ADB5BD;
+  --neutral-light: #1E1E1E;
+  --accent: #F0D589;
+  --accent-light: #FAE8AA;
+  --accent-dark: #E9C46A;
+  --success: #81C784;
+  --warning: #FFD54F;
+  --danger: #EF5350;
+  --info: #4DD0E1;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+  background-color: #121212;
+  color: var(--neutral-dark);
 }
 
 * {
