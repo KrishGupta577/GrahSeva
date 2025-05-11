@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './FindServices.css';
 import axios from 'axios';
 import { MyContext } from '../../Context/ContextStore';
+import BookingForm from '../BookingForm/BookingForm';
 
 const FindServices = () => {
   const { url } = useContext(MyContext);
@@ -11,8 +12,9 @@ const FindServices = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredServices, setFilteredServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [bookingService, setBookingService] = useState(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  // Icons for each service type based on service name
   const serviceIcons = {
     'Electrician': '⚡',
     'Plumber': '🔧',
@@ -42,7 +44,6 @@ const FindServices = () => {
     fetchServices();
   }, [url]);
 
-  // Filter services based on search term
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredServices(services);
@@ -55,22 +56,39 @@ const FindServices = () => {
     }
   }, [searchTerm, services]);
 
-  // Handle search submission
   const handleSearch = (e) => {
     e.preventDefault();
-    // The filtering is already handled by the useEffect above
   };
 
-  // Extract unique categories from services (in this case, we'll use the service names as categories)
   const serviceCategories = services.map(service => ({
     id: service.serviceId,
     name: service.serviceName,
     icon: serviceIcons[service.serviceName] || '🛠️'
   }));
 
-  // Format price to INR currency
   const formatPrice = (price) => {
     return `₹${price}`;
+  };
+
+  const handleBookService = (service) => {
+    const serviceWithIcon = {
+      ...service,
+      icon: serviceIcons[service.serviceName] || '🛠️'
+    };
+    setBookingService(serviceWithIcon);
+  };
+
+  const handleCloseBookingForm = () => {
+    setBookingService(null);
+  };
+
+  const handleBookingSubmit = (bookingData) => {
+    console.log('Booking submitted:', bookingData);
+    setBookingService(null);
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 5000);
   };
 
   if (loading) {
@@ -94,6 +112,16 @@ const FindServices = () => {
 
   return (
     <div className="find-services">
+      {showSuccessMessage && (
+        <div className="success-message">
+          <div className="success-content">
+            <span className="success-icon">✓</span>
+            <p>Booking confirmed successfully! Our team will contact you shortly.</p>
+            <button className="close-button" onClick={() => setShowSuccessMessage(false)}>×</button>
+          </div>
+        </div>
+      )}
+      
       <div className="page-header">
         <h1>Find Services</h1>
         <p>Browse and book reliable home services from verified professionals</p>
@@ -146,7 +174,7 @@ const FindServices = () => {
                   <p className="service-description">{service.description}</p>
                   <div className="service-price">
                     <span className="price">{formatPrice(service.price)}</span>
-                    <button className="btn-primary">Book Now</button>
+                    <button className="btn-primary" onClick={() => handleBookService(service)}>Book Now</button>
                   </div>
                 </div>
               ))}
@@ -170,7 +198,7 @@ const FindServices = () => {
                 <p>{service.description}</p>
                 <div className="service-price">
                   <span className="price">{formatPrice(service.price)}</span>
-                  <button className="btn-secondary">Book</button>
+                  <button className="btn-secondary" onClick={() => handleBookService(service)}>Book</button>
                 </div>
               </div>
             ))}
@@ -200,12 +228,20 @@ const FindServices = () => {
               <p>{service.description}</p>
               <div className="service-price">
                 <span className="price">{formatPrice(service.price)}</span>
-                <button className="btn-secondary">Book</button>
+                <button className="btn-secondary" onClick={() => handleBookService(service)}>Book</button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {bookingService && (
+        <BookingForm 
+          service={bookingService}
+          onClose={handleCloseBookingForm}
+          onSubmit={handleBookingSubmit}
+        />
+      )}
     </div>
   );
 };

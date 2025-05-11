@@ -14,6 +14,11 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     { id: 'settings', label: 'Settings', icon: '⚙️' },
   ];
 
+  const handleLogoutButtom = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -30,23 +35,12 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
               </button>
             </li>
           ))}
+          <li className="logout-btn" onClick={() => handleLogoutButtom()} >
+            <span className="menu-icon">🚪</span>
+            <span className="menu-text">Logout</span>
+          </li>
         </ul>
       </nav>
-
-      <div className="sidebar-footer">
-        <div className="support-card">
-          <div className="support-icon">🛟</div>
-          <h4>Need Help?</h4>
-          <p>Our support team is available 24/7</p>
-          <button className="btn-primary support-btn">Contact Support</button>
-        </div>
-
-        <button className="logout-btn" onClick={() => navigate('/') } >
-          <span className="menu-icon">🚪</span>
-          <span className="menu-text">Logout</span>
-
-        </button>
-      </div>
     </div>
   );
 };

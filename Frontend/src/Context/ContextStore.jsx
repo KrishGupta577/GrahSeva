@@ -5,7 +5,7 @@ export const MyContext = createContext(null);
 
 const ContextStore = ({ children }) => {
 
-  const [colorTheme,setColorTheme] = useState("light")
+  const [colorTheme, setColorTheme] = useState("light")
   const [userInfo, setUserInfo] = useState()
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [activeServices, setActiveServices] = useState([])
@@ -47,7 +47,9 @@ const ContextStore = ({ children }) => {
     activeServices,
     setActiveServices,
     colorTheme,
-    setColorTheme
+    setColorTheme,
+    refreshActiveServices: () => { fetchActiveServices() },
+    refreshUserInfo: () => { fetchUserInfo() }
   }
 
   return (
